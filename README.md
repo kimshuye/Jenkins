@@ -1,17 +1,126 @@
 # Jenkins
 
-
-### Start Jenkins
+## Ubuntu version 20.04.1
 
 ```bash
-docker run \
-    --name myjenkins  \
-    -p 8080:8080 \
-    -p 5000:5000 \
-    -d \
-    -v ${PWD}/jenkins_home:/var/jenkins_home \
-    jenkins/jenkins:2.263.1
 
+lsb_release -a
 
 ```
+
+output:
+
+```
+No LSB modules are available.
+Distributor ID: Ubuntu
+Description:    Ubuntu 20.04.1 LTS
+Release:        20.04
+Codename:       focal
+```
+
+## Install JDK version latest
+
+```bash
+
+sudo apt install -y default-jre
+
+```
+
+## Download jenkins.war 
+
+
+https://www.jenkins.io/download/
+
+* 2.263.2 LTS
+
+Jenkins.war
+
+
+## Step 1 — Installing Jenkins
+
+The version of Jenkins included with the default Ubuntu packages is often behind the latest available version from the project itself. To ensure you have the latest fixes and features, use the project-maintained packages to install Jenkins.
+
+
+First, add the repository key to the system:
+
+```bash
+
+wget -q -O - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
+
+```
+ 
+
+After the key is added the system will return with OK.
+
+Next, let’s append the Debian package repository address to the server’s sources.list:
+
+
+```bash
+
+sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+```
+ 
+
+After both commands have been entered, we’ll run update so that apt will use the new repository.
+
+```bash
+
+sudo apt update
+
+```
+ 
+
+Finally, we’ll install Jenkins and its dependencies.
+
+```bash
+
+sudo apt install -y jenkins
+
+```
+ 
+
+Now that Jenkins and its dependencies are in place, we’ll start the Jenkins server.
+## Step 2 — Starting Jenkins
+
+Let’s start Jenkins by using systemctl:
+
+```bash
+
+sudo systemctl start jenkins
+
+```
+Since systemctl doesn’t display status output, we’ll use the status command to verify that Jenkins started successfully:
+
+```bash
+
+sudo systemctl status jenkins
+
+```
+ 
+
+If everything went well, the beginning of the status output shows that the service is active and configured to start at boot:
+
+Output:
+
+```bash
+● jenkins.service - LSB: Start Jenkins at boot time
+   Loaded: loaded (/etc/init.d/jenkins; generated)
+   Active: active (exited) since Fri 2020-06-05 21:21:46 UTC; 45s ago
+     Docs: man:systemd-sysv-generator(8)
+    Tasks: 0 (limit: 1137)
+   CGroup: /system.slice/jenkins.service
+```
+
+## Add jenkins user to docker group
+
+```bash
+
+usermod -a -G docker jenkins
+
+```
+
+
+
+
 
