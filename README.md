@@ -120,6 +120,15 @@ sudo usermod -a -G docker jenkins
 
 ```
 
+* เพื่อให้ใช้งาน Docker , docker-compose ได้ ควร 
+
+
+```bash
+
+reboot
+
+```
+
 
 
 
