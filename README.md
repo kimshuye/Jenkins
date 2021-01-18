@@ -120,7 +120,7 @@ sudo usermod -a -G docker jenkins
 
 ```
 
-* เพื่อให้ใช้งาน Docker , docker-compose ได้ ควร 
+* เพื่อให้ใช้งาน Docker , docker-compose ได้ ควรติดตั้ง Docker , docker-compose แล้ว Restart เครื่อง 1 ครั้ง ทำให้ Jenkins CI สามารถใช้งาน
 
 
 ```bash
@@ -129,7 +129,32 @@ reboot
 
 ```
 
+## Important To Miss
 
 
+* กรณีที่ใช้งาน Private Jenkins และต้องการ ให้สามารถ ใช้คำสั่ง ดั่งเดิม ได้เลย เช่น
 
+
+#### e2e
+- robot (python3)
+- cypress (nodejs)
+
+
+#### integration
+- robot (python3)
+- npm (nodejs)
+- newman (nodejs)
+
+
+#### other
+- make (apt)
+
+
+#### docker hub login
+
+```bash
+
+cat ~/my_password.txt | docker login --username tokdev --password-stdin
+
+```
 
