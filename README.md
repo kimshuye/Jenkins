@@ -116,7 +116,7 @@ Output:
 
 ```bash
 
-usermod -a -G docker jenkins
+sudo usermod -a -G docker jenkins
 
 ```
 
