@@ -24,14 +24,14 @@
       <collapsed/>
     </hudson.model.PaneStatusProperties>
     <jenkins.security.seed.UserSeedProperty>
-      <seed>adccfdc47f4b5b39</seed>
+      <seed>a8f236a4c2679354</seed>
     </jenkins.security.seed.UserSeedProperty>
     <hudson.search.UserSearchProperty>
       <insensitiveSearch>true</insensitiveSearch>
     </hudson.search.UserSearchProperty>
     <hudson.model.TimeZoneProperty/>
     <hudson.security.HudsonPrivateSecurityRealm_-Details>
-      <passwordHash>#jbcrypt:$2a$10$EmnyL7PE4/GJJ7YIDy93f.It83ehz9a9/B1DODLTW32wjqUeLe83.</passwordHash>
+      <passwordHash>#jbcrypt:$2a$10$hEG1jOYP1JT.P.u6VdWi4.YjJiklzrQHqO4urP2RZaeqJD9OQzpla</passwordHash>
     </hudson.security.HudsonPrivateSecurityRealm_-Details>
   </properties>
 </user>

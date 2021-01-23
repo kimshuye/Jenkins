@@ -1,4 +1,4 @@
-FROM jenkins:2.60.3
+FROM jenkins/jenkins:2.263.1
 
 USER root
 # Install Docker from official repo
