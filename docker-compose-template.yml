@@ -1,0 +1,22 @@
+version: "3"
+services:
+  ${SERVICE_NAME}:
+    container_name: ${CONTAINER_NAME}
+    # image: ${IMAGE_NAME}:${IMAGE_TAG}
+    image: jenkins/jenkins:2.263.1
+    build:
+      context: ${DOCKER_FILE}
+    ports:
+      - "8080:8080"
+      - "5000:5000"
+    volumes:
+      - "/srv/jenkins_home:/var/jenkins_home"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    # networks:
+    #   - main
+    restart: always
+
+# networks:
+#   main:
+#     external:
+#       name: main-network

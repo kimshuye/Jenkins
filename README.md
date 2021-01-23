@@ -158,3 +158,87 @@ cat ~/my_password.txt | docker login --username tokdev --password-stdin
 
 ```
 
+
+================================
+
+## Create Dcoker
+
+### Env
+
+
+```bash
+
+export SERVICE_NAME=jenkins
+export CONTAINER_NAME=jenkins
+export DOCKER_FILE=Dockerfile
+export IMAGE_NAME=tokdev/jenkins
+export IMAGE_TAG=1.0.0
+
+
+```
+
+```bash
+docker build \
+   --file ${DOCKER_FILE} \
+   --tag ${IMAGE_NAME}:${IMAGE_TAG} \
+   $(pwd) 
+
+
+```
+
+
+### Copy jenkins_home to srv
+
+
+```bash
+sudo rm -rf /srv/jenkins_home
+sudo mkdir -p /srv/jenkins_home
+# sudo chown ${USER}:${USER} /srv/jenkins_home
+
+sudo cp -r jenkins_home /srv
+sudo useradd jenkins
+sudo chown -R jenkins:jenkins /srv/jenkins_home
+sudo chmod -R +x /srv/jenkins_home
+
+```
+
+### Create Dcoker-compose
+
+
+```bash
+envsubst < docker-compose-template.yml > docker-compose.yml
+
+```
+
+
+### Check Docker-compose format
+
+
+```bash
+docker-compose -f docker-compose.yml config
+
+```
+
+
+### Start Services Docker
+
+
+```bash
+docker-compose up --detach
+# OR
+docker-compose up
+```
+
+
+
+```bash
+docker run \
+    --name myjenkins  \
+    -p 8080:8080 \
+    -p 5000:5000 \
+    -d \
+    -v ${PWD}/jenkins_home:/var/jenkins_home \
+    jenkins/jenkins:2.263.1
+```
+
+
