@@ -2,8 +2,8 @@ version: "3"
 services:
   ${SERVICE_NAME}:
     container_name: ${CONTAINER_NAME}
-    # image: ${IMAGE_NAME}:${IMAGE_TAG}
-    image: jenkins/jenkins:2.263.1
+    image: ${IMAGE_NAME}:${IMAGE_TAG}
+    # image: jenkins/jenkins:2.263.1
     build:
       context: ${DOCKER_FILE}
     ports:
