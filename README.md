@@ -187,18 +187,18 @@ docker build \
 ```
 
 
-### Copy jenkins_home to srv
+### Copy jenkins_home to var
 
 
 ```bash
-sudo rm -rf /srv/jenkins_home
-sudo mkdir -p /srv/jenkins_home
-# sudo chown ${USER}:${USER} /srv/jenkins_home
+sudo rm -rf /var/jenkins_home
+sudo mkdir -p /var/jenkins_home
+# sudo chown ${USER}:${USER} /var/jenkins_home
 
-sudo cp -r jenkins_home /srv
+sudo cp -r jenkins_home /var
 sudo useradd jenkins
-sudo chown -R jenkins:jenkins /srv/jenkins_home
-sudo chmod -R +x /srv/jenkins_home
+sudo chown -R jenkins:jenkins /var/jenkins_home
+sudo chmod -R +x /var/jenkins_home
 
 ```
 
