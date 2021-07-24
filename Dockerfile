@@ -62,7 +62,7 @@ RUN apt-get update -qq && \
     # apt-get install -qqy npm && \
     echo "jenkins ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     chown -R jenkins:jenkins $JENKINS_HOME && \
-    apt-get install -qqy default-mysql-client 
+    apt-get install -qqy default-mysql-client gettext-base
     # chown root:docker /var/run/docker.sock 
 
 USER jenkins
