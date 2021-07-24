@@ -1,10 +1,11 @@
 FROM jenkins/jenkins:lts-jdk11
 
 ENV JENKINS_HOME=/var/jenkins_home
-ENV DOCKER_GID=998
+ARG DOCKER_GID=998
+ARG JENKINS_GID=1001
 
 ENV HOME=/home/jenkins
-ENV JENKINS_HOME=$HOME/jenkins_home
+# ENV JENKINS_HOME=$HOME/jenkins_home
 WORKDIR $HOME
 
 USER root
@@ -70,8 +71,10 @@ USER jenkins
 # ENV GOPATH=$GOROOT
 # ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
+RUN sudo groupmod --gid $JENKINS_GID jenkins 
+RUN sudo groupmod --uid $JENKINS_GID jenkins 
+
 RUN sudo chown -R jenkins:jenkins $HOME
-RUN sudo chown -R jenkins:jenkins $JENKINS_HOME
 COPY requirements.txt $HOME/requirements.txt
 COPY chromedriver $HOME/chromedriver
 RUN sudo apt-get update -qq && sudo apt-get upgrade -qq && \
@@ -81,8 +84,10 @@ RUN sudo apt-get update -qq && sudo apt-get upgrade -qq && \
     sudo chmod +x /usr/local/bin/docker-compose && \
     sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose 
 
-# WORKDIR $JENKINS_HOME
-
-# VOLUME /var/jenkins_home
+WORKDIR $JENKINS_HOME
+VOLUME /$JENKINS_HOME
+RUN sudo chown -R root:root $JENKINS_HOME
+RUN id
+RUN ls -al $JENKINS_HOME
 
 
