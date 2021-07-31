@@ -7,5 +7,6 @@ robotframework-pythonlibcore==2.1.0
 robotframework-requests==0.8.0
 robotframework-screencaplibrary==1.5.1
 robotframework-databaselibrary==1.2.4
-selenium
+selenium==3.141.0
 robotframework-seleniumlibrary==4.5.0
+PyYAML==5.4.1

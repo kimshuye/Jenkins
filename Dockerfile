@@ -1,11 +1,12 @@
 FROM jenkins/jenkins:lts-jdk11
 
-ENV JENKINS_HOME=/var/jenkins_home
+ENV HOME=/home/jenkins
+ENV JENKINS_HOME=$HOME/jenkins_home
+
+# ENV JENKINS_HOME=$HOME/jenkins_home
 ARG DOCKER_GID=998
 ARG JENKINS_GID=1001
 
-ENV HOME=/home/jenkins
-# ENV JENKINS_HOME=$HOME/jenkins_home
 WORKDIR $HOME
 
 USER root
@@ -50,6 +51,12 @@ RUN apt-get update && apt-get install -y \
 	&& apt-get purge --auto-remove -y gnupg \
 	&& rm -rf /var/lib/apt/lists/*
 
+RUN wget -q https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz \
+	&& tar xvzf geckodriver-*.tar.gz \
+	&& rm geckodriver-*.tar.gz \
+	&& mv geckodriver /usr/local/bin \
+	&& chmod a+x /usr/local/bin/geckodriver
+
 # Add Chrome as a user
 RUN usermod -aG audio,video jenkins
 
@@ -72,7 +79,7 @@ USER jenkins
 # ENV PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
 
 RUN sudo groupmod --gid $JENKINS_GID jenkins 
-RUN sudo groupmod --uid $JENKINS_GID jenkins 
+# RUN sudo groupmod --uid $JENKINS_GID jenkins 
 
 RUN sudo chown -R jenkins:jenkins $HOME
 COPY requirements.txt $HOME/requirements.txt
@@ -84,7 +91,9 @@ RUN sudo apt-get update -qq && sudo apt-get upgrade -qq && \
     sudo chmod +x /usr/local/bin/docker-compose && \
     sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose 
 
-WORKDIR $JENKINS_HOME
+RUN sudo echo "127.0.0.1	localhost" >> /etc/hosts
+
+# WORKDIR $JENKINS_HOME
 VOLUME /$JENKINS_HOME
 RUN sudo chown -R root:root $JENKINS_HOME
 RUN id

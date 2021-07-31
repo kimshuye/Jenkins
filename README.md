@@ -191,14 +191,14 @@ docker build \
 
 
 ```bash
-sudo rm -rf /var/jenkins_home
-sudo mkdir -p /var/jenkins_home
-# sudo chown ${USER}:${USER} /var/jenkins_home
+sudo rm -rf /home/jenkins/jenkins_home
+sudo mkdir -p /home/jenkins/jenkins_home
+# sudo chown ${USER}:${USER} /home/jenkins/jenkins_home
 
-sudo cp -r jenkins_home /var
+sudo cp -r jenkins_home /home/jenkins
 sudo useradd jenkins
-sudo chown -R jenkins:jenkins /var/jenkins_home
-sudo chmod -R +x /var/jenkins_home
+sudo chown -R jenkins:jenkins /home/jenkins/jenkins_home
+sudo chmod -R +x /home/jenkins/jenkins_home
 
 ```
 
